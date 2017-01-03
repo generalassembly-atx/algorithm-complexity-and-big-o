@@ -1,5 +1,5 @@
 <!--
-Creator:
+Creator: Brianna
 Location: SF
 -->
 
@@ -30,32 +30,61 @@ Location: SF
 
 * Write and interpret `for` loops.
 * Write and interpret `if/else if/ else` structures.
-* Compare and contrast linear or "brute force" search with binary search.
 
-# Big O Notation and Algorithm Analysis
+<!-- * Compare and contrast linear or "brute force" search with binary search. -->
+
+
+**Warm-up!**
+
+Write pseudocode for the following problem:
+
+You are given two arrays of numbers. Find the largest difference between two numbers where one number is in the first array and the other number is in the second array. 
+
+If you finish early, try solving the problem with a different approach (significantly different pseudocode).   
+
+
+
+## Big O Notation and Algorithm Analysis
 
 ###What is an algorithm?
 
-An algorithm is a set of instructions to find the solution to a problem.  It gives step-by-step operations to be performed that will take you from *any* valid input for the problem to an output.
+An algorithm is a set of instructions to find the solution to a problem.  It gives step-by-step operations to be performed that will take you from *any* valid input for the problem to an output.  It doesn't need to be in a programming language. 
 
-We've been creating algorithms, in one form or another, throughout this class.
+We've been creating algorithms, in one form or another, throughout this class.  Usually we start with pseudocode that describes an algorithm and then convert that to code for a specific function. 
+
+> Note: An algorithm is **not** a function. It's a series of commands that we can reason about without specifying a programming language,  and often without even specifying a type of processor. 
 
 ###What is efficiency?
 
 Whenever we create algorithms, we need to be aware that they run on computers, and computers require time and space (memory) to process every instruction.
 
-Even though most of the algorithms we've written seem to run instantaneously, "instant" algorithms can possibly take minutes or days to run if there's too much input data to process.  For scalability and large systems, it's important to take into account the time and space an algorithm will need to run with larger sizes of inputs.
+Even though most of the functions we've written seem to run very quickly, some of them can possibly take minutes or days to run if there's too much input data to process.  For scalability and large systems, software engineers take into account the time and space an algorithm will need to run with larger sizes of inputs.
 
 **Developers need ways to predict how _efficient_ an algorithm is when we give it different sizes of inputs.** This is measured in terms of:
 
 - Time or "runtime" (how much processing time does it use in the CPU)
 - Space (how much memory does it take up)
 
-If we tried to get a 100% accurate picture of how long an algorithm would take, the analysis required would be so hard it wouldn't be useful for predictions.  We'd basically have to use the algorithm, or run the function, and record how long it took.  
+Because algorithms are abstract, we can't 100% accurately predict how long an algorithm would take if it were on a particular computer in a particular programming language.  The analysis required would be too hard, and it wouldn't be useful for predictions.  We'd basically have to use the function and record how long it took.  
 
-Instead of getting exact values, developers often estimate the efficiency of an algorithm.
+> Note: Developers put time and energy into figuring out how to write code that is effecient by literally trying it.  That's why you'll see articles like [Writing Fast, Memory-Efficient JavaScript](https://www.smashingmagazine.com/2012/11/writing-fast-memory-efficient-javascript/) (caution - from 2012), tools like Google Chrome's [Timeline](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool), and Web APIs like [Performance](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now).  Those examples are mostly analyzing JavaScript on a single web page, but entire companies are built around application performance monitoring or management. 
 
-The most common way to express these estimates is using what is called Big O Notation.
+When developers want a quick a dirty prediction instead of exact values, they often estimate the efficiency of an algorithm. 
+
+The most common way to express these estimates is using what is called Big O notation. Big O notation is easy to calculate, but it's not super accurate. For this reason, Big O notation is most commonly used in a few ways:
+
+- comparing multiple different algorithms to estimate which might run faster (or use less memory) for different input sizes  
+- interviews
+
+**Check for Understanding**
+
+Here's an example of multiple different algorithms that all sort a set of inputs: [https://www.toptal.com/developers/sorting-algorithms](https://www.toptal.com/developers/sorting-algorithms). The top row has all the names of sorting algorithms. The left column describes the inputs. 
+
+Play some of the animations. 
+
+1. Why do you think the input type column matters?
+
+1. When would you choose to use bubble sort instead of merge sort?
 
 ##Big O Notation
 
@@ -65,6 +94,12 @@ Big O notation gives us a simplified way to talk about the  time and space requi
 
 
 ## Common Big O Values
+
+
+**Graph: how the number of operations (time) grows with the number of input elements for various orders of complexity
+(by Yaacov Apelbaum).**
+
+![time complexity graph from Yaacov Apelbaum, apelbaum.wordpress.com](https://apelbaum.files.wordpress.com/2011/10/yaacovapelbaumbigoplot.jpg)
 
 
 | Input Size (N) |	O(1) |	O(log(N))	 |  O(N)	| O(Nlog(N))	| O(N<sup>2</sup>) |
@@ -85,9 +120,6 @@ Observe how curves for different complexities compare to each other.
 - O(n2) starts to spike up sharply as input size gets large.
 
 
-**Graph: how the number of operations (time) grows with the number of input elements for various orders of complexity**
-
-![time complexity graph from Yaacov Apelbaum, apelbaum.wordpress.com](https://apelbaum.files.wordpress.com/2011/10/yaacovapelbaumbigoplot.jpg)
 
 
 Big O notation gives an upper limit for how long or how much space an algorithm could take. We try to get estimates that are close to what time or space will actually be required, but Big O is a guarantee that that the resources it takes to complete the algorithm, as inputs grow infinitely large, will be less than or equal to some constant multiple complexity of an algorithm.
@@ -101,12 +133,21 @@ Big O notation gives an upper limit for how long or how much space an algorithm 
 How can you predict the complexity of a given algorithm? We can look for certain
 features to help us characterize it.
 
--   Think of a name (often `n`) for the size of the input. If you have multiple inputs, like `arr1`, `arr2`, assign different names for each one (size of `arr1` is `n`; size of `arr2` is `m`).
--   For consecutive statements, add the complexities of each.  
--   For branching statements (`if/else`), use the complexity of the worse
+1.  Think of a name (often `n`) for the size of the input. If you have multiple inputs, like `arr1`, `arr2`, assign different names for each one (size of `arr1` is `n`; size of `arr2` is `m`).
+2. Go through the algorithm line-by-line:
+   - Write a multiplier for loops - it should be the maximum number of times the loop can run.
+   - Write a time complexity next to each line that is self-contained.
+   
+3. Total up all the time complexities:
+   - For consecutive statements or blocks, add the complexities of each.  
+   - For branching statements (`if/else`), use the complexity of the worse
     branch.
--   For loops, multiply the maximum number of times the loop can run by the complexity of the work inside the loop.
--   Simplify: eliminate constant multiples within parentheses (`O(2n)` -> `O(n)`), constant multiples of a single big-o family (`8*O(n)` -> `O(n)`), and entire smaller terms (`O(n) + 3*O(1)` -> `O(n)`).  Don't remove smaller terms that use a different name for the input size: `O(n) + O(log(m))` doesn't simplify.
+   - For loops, multiply the maximum number of times the loop can run by the complexity of the work inside the loop.
+   
+4. Simplify by eliminating:
+   - onstant multiples within parentheses (`O(2n)` -> `O(n)`),
+   - constant multiples of a single big-o family (`8*O(n)` -> `O(n)`), and 
+   - entire smaller terms (`O(n) + 3*O(1)` -> `O(n)`).  Don't remove smaller terms that use a different name for the input size: `O(n) + O(log(m))` doesn't simplify.
 
 
 #### O(1)
