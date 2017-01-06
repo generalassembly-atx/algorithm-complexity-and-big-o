@@ -8,6 +8,7 @@ Location: SF
 # Big O Notation and Algorithm Complexity
 
 ### Why is this important?
+
 <!-- framing the "why" in big-picture/real world examples -->
 *This workshop is important because:*
 
@@ -145,8 +146,8 @@ features to help us characterize it.
    - For loops, multiply the maximum number of times the loop can run by the complexity of the work inside the loop.
    
 4. Simplify by eliminating:
-   - onstant multiples within parentheses (`O(2n)` -> `O(n)`),
-   - constant multiples of a single big-o family (`8*O(n)` -> `O(n)`), and 
+   - constant multipliers within parentheses (`O(2n)` -> `O(n)`),
+   - constant multipliers of a single big-o family (`8*O(n)` -> `O(n)`), and 
    - entire smaller terms (`O(n) + 3*O(1)` -> `O(n)`).  Don't remove smaller terms that use a different name for the input size: `O(n) + O(log(m))` doesn't simplify.
 
 
