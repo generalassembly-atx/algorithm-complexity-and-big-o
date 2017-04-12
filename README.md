@@ -47,7 +47,7 @@ If you finish early, try solving the problem with a different approach (signific
 
 ## Big O Notation and Algorithm Analysis
 
-###What is an algorithm?
+### What is an algorithm?
 
 An algorithm is a set of instructions to find the solution to a problem.  It gives step-by-step operations to be performed that will take you from *any* valid input for the problem to an output.  It doesn't need to be in a programming language. 
 
@@ -55,7 +55,7 @@ We've been creating algorithms, in one form or another, throughout this class.  
 
 > Note: An algorithm is **not** a function. It's a series of commands that we can reason about without specifying a programming language,  and often without even specifying a type of processor. 
 
-###What is efficiency?
+### What is efficiency?
 
 Whenever we create algorithms, we need to be aware that they run on computers, and computers require time and space (memory) to process every instruction.
 
@@ -87,7 +87,7 @@ Play some of the animations.
 
 1. When would you choose to use bubble sort instead of merge sort?
 
-##Big O Notation
+## Big O Notation
 
 ### Big O Intro
 
@@ -200,7 +200,7 @@ We still follow the exact same rules, so instead of the term from the loop being
 </details>
 
 
-####O(log(n))
+#### O(log(n))
 
 Any algorithm which cuts the problem size in half each at each step is logarithmic or `O(log n)`.
 
@@ -235,7 +235,7 @@ end
 > Note: The base of a logarithm doesn't matter (as long as it doesn't depend on n) because it can be changed with a constant multiplier. Check out the "change of base" formula for a review.
 
 
-####O(n log(n))
+#### O(n log(n))
 
 You'll usually see `O(n log(n))` in "divide and conquer" algorithms that cut a problem into halves, *solve both halves*, and combine the results into a final solution.  This `O(n log(n))` complexity is famous for being the fastest possible time complexity of sorting algorithms on unrestricted inputs.
 
@@ -256,7 +256,7 @@ function fibonacci(num) {
 ```
 
 
-####Combinations
+#### Combinations
 
 There are a few other common Big O families (notably `O(n!)`), but many problems are composed of combinations of the times we've looked at so far. For example, if a for loop has more complex operations inside it, time complexity is usually higher.
 
